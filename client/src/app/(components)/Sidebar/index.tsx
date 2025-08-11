@@ -22,25 +22,42 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { setIsSidebarCollapsed } from "@/state";
+import { useAppDispatch, useAppSelector } from "@/app/redux";
 
 const Sidebar = () => {
   const [showProjects, setShowProject] = useState(false);
   const [showPriority, setShowPriority] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const isSidebarCollapsed = useAppSelector(
+    (state) => state.global.isSidebarCollapsed,
+  );
+
   const sidebarClassNames = `
   fixed flex flex-col h-[100%] justify-between shadow-xl
   transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white
-  w-64
+  ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}
   `;
 
   return (
     <div className={sidebarClassNames}>
       <div className="flex h-[100%] w-full flex-col justify-start">
         {/* Logo */}
-        <div className="z-50 min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
+        <div className="z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black">
           <div className="text-xl font-bold text-gray-800 dark:text-white">
             PMA Team
           </div>
+          {isSidebarCollapsed ? null : (
+            <button
+              className="py-3"
+              onClick={() => {
+                dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
+              }}
+            >
+              <X className="h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white" />
+            </button>
+          )}
         </div>
 
         {/* Team */}
