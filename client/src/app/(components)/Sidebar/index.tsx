@@ -83,6 +83,57 @@ const Sidebar = () => {
           <SidebarLink icon={User} label="Users" href="/users" />
           <SidebarLink icon={Users} label="Teams" href="/teams" />
         </nav>
+
+        {/* Project Links */}
+        <button
+          onClick={() => setShowProject((prev) => !prev)}
+          className="flex w-full items-center justify-between px-8 py-3 text-gray-500"
+        >
+          <span>Projects</span>
+          {showProjects ? (
+            <ChevronUp className="h-5 w-5 cursor-pointer" />
+          ) : (
+            <ChevronDown className="h-5 w-5 cursor-pointer" />
+          )}
+        </button>
+
+        {/* Priority List */}
+        <button
+          onClick={() => setShowPriority((prev) => !prev)}
+          className="flex w-full items-center justify-between px-8 py-3 text-gray-500"
+        >
+          <span>Priority</span>
+          {showPriority ? (
+            <ChevronUp className="h-5 w-5 cursor-pointer" />
+          ) : (
+            <ChevronDown className="h-5 w-5 cursor-pointer" />
+          )}
+        </button>
+        {showPriority && (
+          <>
+            <SidebarLink
+              icon={AlertTriangle}
+              label="Urgent"
+              href="/priority/urgent"
+            />
+            <SidebarLink
+              icon={ShieldAlert}
+              label="High"
+              href="/priority/high"
+            />
+            <SidebarLink
+              icon={AlertTriangle}
+              label="Medium"
+              href="/priority/medium"
+            />
+            <SidebarLink icon={AlertOctagon} label="Low" href="/priority/low" />
+            <SidebarLink
+              icon={Layers3}
+              label="Backlog"
+              href="/priority/backlog"
+            />
+          </>
+        )}
       </div>
     </div>
   );
