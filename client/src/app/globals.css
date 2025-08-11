@@ -1,26 +1,72 @@
+@theme {
+  --dark-mode: class; /* This replaces the old config option */
+}
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html,
+body,
+#root,
+.app {
+  height: 100%;
+  width: 100%;
+  @apply text-sm;
+  @apply bg-white;
+  @apply dark:bg-black;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@theme {
+  --color-white: #ffffff;
+
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+
+  --color-blue-200: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+
+  --color-dark-bg: #101214;
+  --color-dark-secondary: #1d1f21;
+  --color-dark-tertiary: #3b3d40;
+  --color-blue-primary: #0275ff;
+  --color-stroke-dark: #2d3135;
+
+  --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+  --background-image-gradient-conic: conic-gradient(
+    from 180deg at 50% 50%,
+    var(--tw-gradient-stops)
+  );
+}
+
+/* Dark mode overrides */
+@layer base {
+  .dark {
+    --color-white: #101214; /* in dark mode, "white" is treated as bg dark */
+    --color-gray-100: #1d1f21;
+    --color-gray-200: #2d3135;
+    --color-gray-300: #3b3d40;
+    --color-gray-500: #6b7280; /* unchanged */
+    --color-gray-700: #e5e7eb;
+    --color-gray-800: #f3f4f6;
+
+    --color-blue-200: #60a5fa;
+    --color-blue-400: #3b82f6;
+    --color-blue-500: #0275ff;
+
+    --color-dark-bg: #101214;
+    --color-dark-secondary: #1d1f21;
+    --color-dark-tertiary: #3b3d40;
+    --color-blue-primary: #0275ff;
+    --color-stroke-dark: #2d3135;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
