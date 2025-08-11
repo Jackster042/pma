@@ -52,7 +52,7 @@ const Sidebar = () => {
             </h3>
             <div className="mt-2 flex items-start gap-2">
               <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400" />
-              <p className="text-sx text-gray-500">Private</p>
+              <p className="text-sx text-gray-500 dark:text-white">Private</p>
             </div>
           </div>
         </div>
@@ -90,8 +90,8 @@ const SidebarLink = ({ href, icon: Icon, label }: SidebarLinkProps) => {
         {isActive && (
           <div className="absolute top-0 left-0 h-[100%] w-[5px] bg-blue-200" />
         )}
-        <Icon className="h-6 w-6 text-gray-800 dark:text-gray-100" />
-        <span className="font-medium text-gray-800 dark:text-gray-100">
+        <Icon className="h-6 w-6 text-gray-800 dark:text-gray-500" />
+        <span className="font-medium text-gray-800 dark:text-white">
           {label}
         </span>
       </div>

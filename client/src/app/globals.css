@@ -1,8 +1,6 @@
-@theme {
-  --dark-mode: class; /* This replaces the old config option */
-}
-
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 *,
 *::before,
@@ -17,8 +15,7 @@ body,
   height: 100%;
   width: 100%;
   @apply text-sm;
-  @apply bg-white;
-  @apply dark:bg-black;
+  @apply dark:bg-dark-bg bg-white text-gray-900 dark:text-white;
 }
 
 @theme {
@@ -51,7 +48,7 @@ body,
 /* Dark mode overrides */
 @layer base {
   .dark {
-    --color-white: #101214; /* in dark mode, "white" is treated as bg dark */
+    --color-white: #ffffff; /* in dark mode, "white" is treated as bg dark */
     --color-gray-100: #1d1f21;
     --color-gray-200: #2d3135;
     --color-gray-300: #3b3d40;
