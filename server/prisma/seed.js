@@ -1,19 +1,13 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const index_js_1 = require("../generated/prisma/index.js");
-const fs_1 = __importDefault(require("fs"));
-const path_1 = __importDefault(require("path"));
-const url_1 = require("url");
-// ESM-safe __dirname and __filename
-const __filename = (0, url_1.fileURLToPath)(import.meta.url);
-const __dirname = path_1.default.dirname(__filename);
-const prisma = new index_js_1.PrismaClient();
+import { PrismaClient } from "../generated/prisma/index.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const prisma = new PrismaClient();
 async function deleteAllData(orderedFileNames) {
     const modelNames = orderedFileNames.map((fileName) => {
-        const modelName = path_1.default.basename(fileName, path_1.default.extname(fileName));
+        const modelName = path.basename(fileName, path.extname(fileName));
         return modelName.charAt(0).toUpperCase() + modelName.slice(1);
     });
     for (const modelName of modelNames) {
@@ -28,7 +22,7 @@ async function deleteAllData(orderedFileNames) {
     }
 }
 async function main() {
-    const dataDirectory = path_1.default.join(__dirname, "seedData");
+    const dataDirectory = path.join(__dirname, "seedData");
     const orderedFileNames = [
         "team.json",
         "project.json",
@@ -41,9 +35,9 @@ async function main() {
     ];
     await deleteAllData(orderedFileNames);
     for (const fileName of orderedFileNames) {
-        const filePath = path_1.default.join(dataDirectory, fileName);
-        const jsonData = JSON.parse(fs_1.default.readFileSync(filePath, "utf-8"));
-        const modelName = path_1.default.basename(fileName, path_1.default.extname(fileName));
+        const filePath = path.join(dataDirectory, fileName);
+        const jsonData = JSON.parse(fs.readFileSync(filePath, "utf-8"));
+        const modelName = path.basename(fileName, path.extname(fileName));
         const model = prisma[modelName];
         try {
             for (const data of jsonData) {

@@ -23,7 +23,6 @@ app.get("/", (req, res) => res.send("Home route!"));
 
 // Server
 const port = process.env.PORT || 3000;
-app.listen(port, (err) => {
-  if (err) console.log(err, "Application failed to start!");
-  else console.log(`Application is running on http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(`Application is running on http://localhost:${port}`);
 });
