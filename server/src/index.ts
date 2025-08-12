@@ -6,6 +6,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 
 // Route imports
+import projectRoutes from "./routes/projectRoutes";
+import taskRoutes from "./routes/taskRoutes";
 
 // Configuration
 dotenv.config();
@@ -20,9 +22,12 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 // Routes
 app.get("/", (req, res) => res.send("Home route!"));
+app.use("/projects", projectRoutes);
+app.use("/tasks", taskRoutes);
 
 // Server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Application is running on http://localhost:${port}`);
+  console.log("Hello from App");
 });
