@@ -224,7 +224,32 @@ const Task = ({ task }: TaskProps) => {
         {/* Users */}
         <div className="mt-3 flex items-center justify-between">
           <div className="flex -space-x-[6px] overflow-hidden">
-            Render User Images
+            {task.assignee && (
+              <Image
+                key={task.assignee.userId}
+                src={`/${task.assignee.profilePictureUrl!}`}
+                alt={task.assignee.username}
+                width={30}
+                height={30}
+                className="dark:border-dark-secondary h-8 w-8 rounded-full border-2 border-white object-cover"
+              />
+            )}
+            {task.author && (
+              <Image
+                key={task.author.userId}
+                src={`/${task.author.profilePictureUrl!}`}
+                alt={task.author.username}
+                width={30}
+                height={30}
+                className="dark:border-dark-secondary h-8 w-8 rounded-full border-2 border-white object-cover"
+              />
+            )}
+          </div>
+          <div className="flex items-center text-gray-500 dark:text-neutral-500">
+            <MessageSquareMore size={20} />
+            <span className="ml-1 text-sm dark:text-neutral-400">
+              {numberOfCOmments} {numberOfCOmments > 1 ? "comments" : "comment"}
+            </span>
           </div>
         </div>
       </div>
