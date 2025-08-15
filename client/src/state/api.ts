@@ -1,5 +1,4 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { error } from "console";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export interface User {
   userId?: number;
@@ -68,12 +67,12 @@ export enum Priority {
 }
 
 export const api = createApi({
-  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL! }),
   reducerPath: "api",
   tagTypes: ["Projects", "Tasks", "Users", "Teams"],
   endpoints: (build) => ({
     getProjects: build.query<Project[], void>({
-      query: () => "/projects",
+      query: () => "projects",
       providesTags: ["Projects"],
     }),
     createProject: build.mutation<Project, Partial<Project>>({
@@ -140,5 +139,4 @@ export const {
   useGetUsersQuery,
   useGetTeamsQuery,
   useGetTasksByUserQuery,
-  useGetAuthUserQuery,
-} = api as any; //TODO : remove any
+} = api;
