@@ -7,7 +7,7 @@ import {
 
 const router = Router();
 
-router.get("/:projectId", getTasks);
+router.get("/", getTasks);
 router.post("/", createTask);
 router.patch("/:taskId/status", updateTask);
 
