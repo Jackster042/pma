@@ -1,32 +1,38 @@
 export const dataGridClassNames =
-  "border border-gray-200 bg-white shadow dark:border-stroke-dark dark:bg-dark-secondary dark:text-gray-200";
+  "border border-gray-200 shadow dark:border-stroke-dark dark:text-gray-200";
 
-export const dataGridSxStyles = (isDarkMode: boolean) => {
-  return {
-    "& .MuiDataGrid-columnHeaders": {
-      color: `${isDarkMode ? "#e5e7eb" : ""}`,
-      '& [role="row"] > *': {
-        backgroundColor: `${isDarkMode ? "#1d1f21" : "white"}`,
-        borderColor: `${isDarkMode ? "#2d3135" : ""}`,
-      },
+export const dataGridSxStyles = (isDarkMode: boolean) => ({
+  "&.MuiDataGrid-root": {
+    backgroundColor: isDarkMode ? "#1d1f21" : "#fff",
+    color: isDarkMode ? "#e5e7eb" : "#111",
+    borderColor: isDarkMode ? "#2d3135" : "#e5e7eb",
+  },
+
+  "& .MuiDataGrid-columnHeaders": {
+    color: `${isDarkMode ? "#e5e7eb" : ""}`,
+    '& [role="row"] > *': {
+      backgroundColor: `${isDarkMode ? "#1d1f21" : "white"}`,
+      borderColor: isDarkMode ? "#2d3135" : "#e5e7eb",
     },
-    "& .MuiIconbutton-root": {
-      color: `${isDarkMode ? "#a3a3a3" : ""}`,
+  },
+
+  "& .MuiDataGrid-cell": {
+    borderColor: isDarkMode ? "#2d3135" : "#e5e7eb",
+  },
+
+  "& .MuiDataGrid-row:hover": {
+    backgroundColor: isDarkMode ? "#2a2d31" : "#f3f4f6",
+    borderColor: isDarkMode ? "#2d3135" : "#e5e7eb",
+  },
+
+  "& .MuiIconButton-root, & .MuiTablePagination-root, & .MuiTablePagination-selectIcon":
+    {
+      color: isDarkMode ? "#a3a3a3" : "#111",
     },
-    "& .MuiTablePagination-root": {
-      color: `${isDarkMode ? "#a3a3a3" : ""}`,
-    },
-    "& .MuiTablePagination-selectIcon": {
-      color: `${isDarkMode ? "#a3a3a3" : ""}`,
-    },
-    "& .MuiDataGrid-cell": {
-      border: "none",
-    },
-    "& .MuiDataGrid-row": {
-      borderBottom: `1px solid ${isDarkMode ? "#2d3135" : "e5e7eb"}`,
-    },
-    "& .MuiDataGrid-withBorderColor": {
-      borderColor: `${isDarkMode ? "#2d3135" : "e5e7eb"}`,
-    },
-  };
-};
+  "& .MuiDataGrid-virtualScrollerContent": {
+    backgroundColor: isDarkMode ? "#1d1f21" : "#fff",
+  },
+  "& .MuiDataGrid-filler": {
+    backgroundColor: isDarkMode ? "#1d1f21" : "#fff",
+  },
+});

@@ -32,6 +32,8 @@ export const createProject = async (
       },
     });
 
+    console.log(newProject, "NEW PROJECT FROM PROJECT CONTROLLER");
+
     await prisma.$queryRaw`
   SELECT setval(
     pg_get_serial_sequence('"Project"', 'id'), 

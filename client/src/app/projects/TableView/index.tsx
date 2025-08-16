@@ -11,56 +11,35 @@ type Props = {
 };
 
 const columns: GridColDef[] = [
-  {
-    field: "title",
-    headerName: "Title",
-    width: 100,
-  },
-  {
-    field: "description",
-    headerName: "Description",
-    width: 200,
-  },
+  { field: "title", headerName: "Title", flex: 1, minWidth: 100 },
+  { field: "description", headerName: "Description", flex: 2, minWidth: 200 },
   {
     field: "status",
     headerName: "Status",
-    width: 130,
+    flex: 1,
+    minWidth: 130,
     renderCell: (params) => (
       <span className="inline-flex rounded-full bg-green-200 px-2 text-xs leading-5 font-semibold text-green-800">
         {params.value}
       </span>
     ),
   },
-  {
-    field: "priority",
-    headerName: "Priority",
-    width: 75,
-  },
-  {
-    field: "tags",
-    headerName: "Tags",
-    width: 130,
-  },
-  {
-    field: "startDate",
-    headerName: "Start Date",
-    width: 130,
-  },
-  {
-    field: "dueDate",
-    headerName: "Due Date",
-    width: 130,
-  },
+  { field: "priority", headerName: "Priority", flex: 1, minWidth: 75 },
+  { field: "tags", headerName: "Tags", flex: 1, minWidth: 130 },
+  { field: "startDate", headerName: "Start Date", flex: 1, minWidth: 130 },
+  { field: "dueDate", headerName: "Due Date", flex: 1, minWidth: 130 },
   {
     field: "author",
     headerName: "Author",
-    width: 150,
+    flex: 1,
+    minWidth: 150,
     renderCell: (params) => params.value?.author || "Unknown",
   },
   {
     field: "assignee",
     headerName: "Assignee",
-    width: 150,
+    flex: 1,
+    minWidth: 150,
     renderCell: (params) => params.value?.assignee || "Unassigned",
   },
 ];
@@ -83,7 +62,7 @@ const Table = ({ id, setIsModalNewTaskOpen }: Props) => {
           name="Table"
           buttonComponent={
             <button
-              className="bg-blue-primary flex items-center rounded px-3 py-2 text-white hover:bg-blue-600"
+              className="bg-blue-primary flex cursor-pointer items-center rounded px-3 py-2 text-white hover:bg-blue-600"
               onClick={() => setIsModalNewTaskOpen(true)}
             >
               Add Task

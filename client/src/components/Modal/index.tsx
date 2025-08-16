@@ -1,0 +1,37 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import Header from "../Header";
+import { X } from "lucide-react";
+
+type Props = {
+  children: React.ReactNode;
+  isOpen: boolean;
+  onCLose: () => void;
+  name: string;
+};
+
+const Modal = ({ name, isOpen, onCLose, children }: Props) => {
+  if (!isOpen) return null;
+  return ReactDOM.createPortal(
+    <div className="fixed inset-0 z-50 flex h-full w-full items-center justify-center overflow-y-auto bg-black/60 p-4">
+      <div className="dark:bg-dark-secondary w-full max-w-2xl rounded-lg bg-white p-4 shadow-lg">
+        <Header
+          name={name}
+          buttonComponent={
+            <button
+              className="bg-blue-primary flex h-7 w-7 cursor-pointer items-center justify-center rounded-full text-white hover:bg-blue-600"
+              onClick={() => onCLose()}
+            >
+              <X size={18} />
+            </button>
+          }
+          // isSmallText
+        />
+        {children}
+      </div>
+    </div>,
+    document.body,
+  );
+};
+
+export default Modal;

@@ -10,6 +10,7 @@ import {
   Share2,
   Table,
 } from "lucide-react";
+import ModalNewProject from "./ModalNewProject";
 
 type Props = {
   activeTab: string;
@@ -23,13 +24,17 @@ const ProjectHeader = ({ activeTab, setActiveTab }: Props) => {
   return (
     <div className="px-4 xl:px-6">
       {/* Modal fro new project */}
+      <ModalNewProject
+        isOpen={isModalNewProjectOpen}
+        onClose={() => setIsModalNewProjectOpen(false)}
+      />
       <div className="pt-6 pb-6 lg:pt-8 lg:pb-8">
         <Header
           name="Product Design Development"
           buttonComponent={
             <button
               className="flex cursor-pointer items-center rounded-md bg-blue-500 px-3 py-2 text-white hover:bg-blue-600"
-              onClick={() => {}}
+              onClick={() => setIsModalNewProjectOpen(true)}
             >
               <PlusSquare className="mr-2 h-5 w-5" />
               New Boards
