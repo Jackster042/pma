@@ -30,7 +30,9 @@ const Project = ({ params }: Props) => {
       {activeTab === "Timeline" && (
         <Timeline setIsModalNewTaskOpen={setIsModalNewTaskOpen} id={id} />
       )}
-      {activeTab === "Table" && <Table />}
+      {activeTab === "Table" && (
+        <Table setIsModalNewTaskOpen={setIsModalNewTaskOpen} id={id} />
+      )}
     </div>
   );
 };
