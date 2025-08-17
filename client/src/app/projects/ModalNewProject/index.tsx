@@ -38,7 +38,9 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
     });
   };
 
-  const isFormValid = () => projectName && description && startDate && dueDate;
+  const isFormValid = () => {
+    return projectName && description && startDate && dueDate;
+  };
 
   const inputStyles =
     "w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:text-white dark:focus:outline-none";
@@ -81,8 +83,10 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
         </div>
         <button
           type="submit"
-          className={`mt-10 flex w-full cursor-pointer items-center justify-center rounded bg-blue-500 px-4 py-2 font-semibold text-white ${!isFormValid || (isLoading && "cursor-not-allowed opacity-50")} `}
-          disabled={!isFormValid}
+          className={`focus-offset-2 mt-4 flex w-full justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-600 focus:ring-2 focus:ring-blue-600 focus:outline-none ${
+            !isFormValid() || isLoading ? "cursor-not-allowed opacity-50" : ""
+          }`}
+          disabled={!isFormValid || isLoading}
         >
           {isLoading ? "Creating..." : "Create Project"}
         </button>
