@@ -8,6 +8,9 @@ import morgan from "morgan";
 // Route imports
 import projectRoutes from "./routes/projectRoutes";
 import taskRoutes from "./routes/taskRoutes";
+import teamRoutes from "./routes/teamRoutes";
+import searchRoutes from "./routes/searchRoutes";
+import userRoutes from "./routes/userRoutes";
 
 // Configuration
 dotenv.config();
@@ -24,6 +27,9 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.get("/", (req, res) => res.send("Home route!"));
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
+app.use("/teams", teamRoutes);
+app.use("/search", searchRoutes);
+app.use("/users", userRoutes);
 
 // Server
 const port = process.env.PORT || 3000;
