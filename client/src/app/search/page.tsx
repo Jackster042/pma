@@ -4,6 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useSearchQuery } from "@/state/api";
 import Header from "@/components/Header";
 import { debounce } from "lodash";
+import TaskCard from "@/components/TaskCard";
+import ProjectCard from "@/components/ProjectCard";
+import UserCard from "@/components/UserCard";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -28,15 +31,14 @@ const Search = () => {
   return (
     <div className="p-8">
       <Header name="Search" />
-      <div>
+
+      <div className="flex flex-col gap-6 p-5">
         <input
           type="text"
           placeholder="Search..."
           className="w-1/2 rounded border p-3 shadow"
           onChange={handleSearch}
         />
-      </div>
-      <div className="p-5">
         {isLoading && <p>Loading...</p>}
         {error && <p>Error occurred while fetching search results.</p>}
         {!isLoading && !error && searchResults && (
@@ -46,15 +48,15 @@ const Search = () => {
             )}
             {/* Tasks */}
             {searchResults.tasks?.map((task) => (
-              <div key={task.id}>{task.title}</div>
+              <TaskCard key={task.id} task={task} />
             ))}
             {/* Project */}
             {searchResults.projects?.map((project) => (
-              <div key={project.id}>{project.name}</div>
+              <ProjectCard key={project.id} project={project} />
             ))}
             {/* User */}
             {searchResults.users?.map((user) => (
-              <div key={user.userId}>{user.username}</div>
+              <UserCard key={user.userId} user={user} />
             ))}
           </div>
         )}

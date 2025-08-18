@@ -8,6 +8,7 @@ type Props = {
 };
 
 const TaskCard = ({ task }: Props) => {
+  console.log(task, "TaskCard");
   return (
     <div className="dark:bg-dark-secondary mb-3 rounded bg-white p-4 shadow dark:text-white">
       {task.attachments && task.attachments.length > 0 && (
