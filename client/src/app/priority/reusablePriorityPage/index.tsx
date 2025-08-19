@@ -1,15 +1,18 @@
 "use client";
 
+import React, { use, useEffect, useState } from "react";
 import { useAppSelector } from "@/app/redux";
 import Header from "@/components/Header";
 import ModalNewTask from "@/components/ModalNewTask";
+import TaskCard from "@/components/TaskCard";
 import {
   Priority,
   useGetTasksByUserQuery,
   useGetUsersQuery,
 } from "@/state/api";
+import { DataGrid } from "@mui/x-data-grid";
 import { GridColDef } from "@mui/x-data-grid";
-import React, { use, useState } from "react";
+import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
 
 type Props = {
   priority: Priority;
@@ -71,14 +74,16 @@ const columns: GridColDef[] = [
 ];
 
 const ReusablePriorityPage = ({ priority }: Props) => {
-  const [view, setView] = useState<string>("");
+  // const [view, setView] = useState<string>("");
+  const [view, setView] = useState<"list" | "table">("list");
+
   const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState<boolean>(false);
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
 
   //   TODO: GET CURRENT AUTH USER ID
   const { data: users } = useGetUsersQuery();
   //   SIMULATED AUTH USER
-  const userId = users?.data?.[0]?.userId;
+  const userId = users?.data?.[1]?.userId;
 
   console.log(userId, "USER ID");
 
@@ -112,21 +117,46 @@ const ReusablePriorityPage = ({ priority }: Props) => {
       <div className="mb-4 flex justify-start">
         <button
           className={`px-4 py-2 ${
-            view === "list" ? "bg-gray-300" : "bg-white"
-          } rounded-l`}
+            view === "list" ? "bg-gray-300 dark:text-white" : "bg-white"
+          } cursor-pointer rounded-l`}
           onClick={() => setView("list")}
         >
           List
         </button>
         <button
           className={`px-4 py-2 ${
-            view === "table" ? "bg-gray-300" : "bg-white"
-          } rounded-l`}
+            view === "table" ? "bg-gray-300 dark:text-white" : "bg-white"
+          } cursor-pointer rounded-r`}
           onClick={() => setView("table")}
         >
           Table
         </button>
       </div>
+
+      {/* Display tasks list or table */}
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : view === "list" ? (
+        <div>
+          {filteredTasks?.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
+      ) : (
+        view === "table" &&
+        filteredTasks && (
+          <div className="z-0 w-full">
+            <DataGrid
+              rows={filteredTasks}
+              columns={columns}
+              checkboxSelection
+              getRowId={(row) => row.id}
+              className={dataGridClassNames}
+              sx={dataGridSxStyles(isDarkMode)}
+            />
+          </div>
+        )
+      )}
     </div>
   );
 };
