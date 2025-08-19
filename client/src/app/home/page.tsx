@@ -141,7 +141,7 @@ const HomePage = () => {
           </ResponsiveContainer>
         </div>
         {/* Your Tasks */}
-        <div className="dar:bg-dark-secondary mt-2 rounded-lg bg-white p-4 shadow md:col-span-2">
+        <div className="dar:bg-dark-secondary mt-2 rounded-lg bg-gray-100 p-4 shadow md:col-span-2">
           <h3 className="mb-4 text-lg font-semibold dark:text-white">
             Your Tasks
           </h3>

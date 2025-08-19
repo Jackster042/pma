@@ -106,3 +106,26 @@ body,
 .timeline ._29NTg {
   @apply dark:text-neutral-500;
 }
+
+/* Global scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f4f6; /* default light mode track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* default light mode thumb */
+  border-radius: 4px;
+}
+
+/* Dark mode scrollbars */
+.dark ::-webkit-scrollbar-track {
+  background: #101214; /* your dark background */
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #2d3135; /* matches your --color-stroke-dark */
+}

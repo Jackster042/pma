@@ -25,10 +25,23 @@ export const dataGridSxStyles = (isDarkMode: boolean) => ({
     borderColor: isDarkMode ? "#2d3135" : "#e5e7eb",
   },
 
+  // ✅ Fix for selected row in dark mode
+  "& .MuiDataGrid-row.Mui-selected": {
+    backgroundColor: isDarkMode ? "#2a2d31 !important" : "#e5e7eb !important",
+    "&:hover": {
+      backgroundColor: isDarkMode ? "#33373c !important" : "#d1d5db !important",
+    },
+  },
+
+  "& .MuiCheckbox-root": {
+    color: isDarkMode ? "#a3a3a3" : "#111",
+  },
+
   "& .MuiIconButton-root, & .MuiTablePagination-root, & .MuiTablePagination-selectIcon":
     {
       color: isDarkMode ? "#a3a3a3" : "#111",
     },
+
   "& .MuiDataGrid-virtualScrollerContent": {
     backgroundColor: isDarkMode ? "#1d1f21" : "#fff",
   },
