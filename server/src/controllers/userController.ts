@@ -19,6 +19,7 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
       });
       return;
     }
+    console.log(users, "USERS FROM GET USERS");
     res.json(users);
   } catch (error) {
     console.error(error, "Error from getUser");

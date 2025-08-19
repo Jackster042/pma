@@ -9,6 +9,11 @@ export interface User {
   teamId?: number;
 }
 
+export interface UserResponse {
+  message: string;
+  data?: User[];
+}
+
 export interface Attachment {
   id: number;
   fileURL: string;
@@ -115,7 +120,7 @@ export const api = createApi({
         { type: "Tasks", id: taskId },
       ],
     }),
-    getUsers: build.query<User[], void>({
+    getUsers: build.query<UserResponse, void>({
       query: () => "users",
       providesTags: ["Users"],
     }),
