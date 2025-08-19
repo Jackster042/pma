@@ -32,8 +32,8 @@ app.use("/search", searchRoutes);
 app.use("/users", userRoutes);
 
 // Server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, "0.0.0.0", () => {
   console.log(`Application is running on http://localhost:${port}`);
   console.log("Hello from App");
 });
